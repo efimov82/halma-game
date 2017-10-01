@@ -1,11 +1,12 @@
 import * as supertest from 'supertest'
-import app from './App'
+import HalmaGame from '../src/HalmaGame'
 
+// TODO tests for game
 describe('App', () => {
   it('works', () =>
     supertest(app)
       .get('/')
-      .expect('Content-Type', /json/)
+      .expect('Content-Type', /html/)
       .expect(200)
   )
 })

@@ -1,2 +1,4 @@
-## Hamla online game for Node.js applications written in TypeScript
+## Hamla online game written in TypeScript + Node JS
+
+
 
