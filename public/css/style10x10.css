@@ -1,0 +1,22 @@
+/* 
+    Created on : Sep 19, 2017, 2:12:28 PM
+    Author     : efimov82
+*/
+
+.lightOn {
+  background-image: url('../img/lamp_sm.png');
+  background-repeat: no-repeat;
+  animation: showOnAnimation 1.5s ease-out normal;
+}
+
+.lightOnFreezed {
+  background-image: url('../img/lamp_freezed_sm.png');
+  background-repeat: no-repeat;
+  animation: showOnAnimation 1.5s ease-out normal;
+}
+
+.lightOffFreezed {
+  background-image: url('../img/lamp_off_freezed_sm.png');
+  background-repeat: no-repeat;
+  animation: showOnAnimation 1.5s ease-out normal;
+}

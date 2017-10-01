@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+
+
+  <div class="jumbotron">
+    <h2>Create your game</h2>
+    <button onclick="startGame()"> Start </button>
+  </div>
+
+  <div class="row justify-content-md-center">
+
+    <div class="col-sm-4">
+      <h3>Open games:</h3>
+      <ul>
+        <% if (games.size) {
+            games.forEach( (game, key) => { %>
+          <li>
+            <%= key %> (<%= game.size %>x<%= game.size %>) <a href="/<%= key %>/join"> Join</a>
+          </li>
+          <% }); 
+          } else { %>
+            <p>No games</p>
+          <% } %>
+      </ul>
+
+    </div>
+    <div class="col-sm-4">
+      <h3>Playing right now</h3>
+
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    function startGame() {
+      $.get('/start').done((responce) => {
+        location.href = '/' + responce
+      })
+    };
+  </script>
+
+  <% include ../partials/footer %>

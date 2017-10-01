@@ -1,0 +1,117 @@
+
+.game {
+  max-width: 750px;
+  
+}
+
+.game-field {
+  border: 2px solid darkblue;
+}
+
+.gameCell {
+  background-color: #ECECEC;
+  border: 1px solid #505050;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 2px;
+  min-width: 100px;
+  height: 100px;
+  background-image: url('../img/lamp_off.png');
+  background-repeat: no-repeat;
+}
+
+.gameCell-md {
+  background-color: #ECECEC;
+  border: 1px solid #505050;
+  border-radius: 4px;
+  padding: 1px;
+  margin: 2px;
+  min-width: 60px;
+  height: 60px;
+  background-image: url('../img/lamp_off_sm.png');
+  background-repeat: no-repeat;
+}
+
+.gameCell-sm {
+  background-color: darkcyan;
+  border: 2 solid darkblue;
+  border-radius: 4px;
+  padding: 1px;
+  margin: 2px;
+  min-width: 45px;
+  height: 45px;
+  background-image: url('../img/lamp_off_sm.png');
+  background-repeat: no-repeat;
+}
+
+.textPage{
+  font-size: 18px;
+}
+
+.panelTools {
+   
+   width: 90px;
+   padding: 6px;
+   border-radius: 5px;
+   background-color: #ddddff;
+}
+
+.panelTools button {
+  
+  border-radius: 5px;
+  margin: 2px;
+  border: 1px solid #eeaaee;
+  
+}
+
+
+.gameInfo {
+  background-color: #ddddff;
+  border: 1px solid lightblue;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+  font-size: 16px;
+}
+
+.gameInfo span {
+  font-weight: bold;
+}
+
+.info-block {
+  padding: 6px;
+  
+  margin-right: 10px;
+  border: 1px solid lightblue;
+  background-color: #eeeeee;
+  border-radius: 5px;
+}
+
+@keyframes showOnAnimation {
+  0% {
+    opacity: 0;
+  }
+  
+  100% {
+    opacity: 100;
+  }
+}
+
+.lightOn {
+  background-image: url('../img/lamp_sm.png');
+  background-repeat: no-repeat;
+  animation: showOnAnimation 1.5s ease-out normal;
+  background-color: #296062;
+}
+
+.lightOnFreezed {
+  background-image: url('../img/lamp_freezed_sm.png');
+  background-repeat: no-repeat;
+  animation: showOnAnimation 1.5s ease-out normal;
+}
+
+.lightOffFreezed {
+  background-image: url('../img/lamp_off_freezed_sm.png');
+  background-repeat: no-repeat;
+  animation: showOnAnimation 1.5s ease-out normal;
+}
