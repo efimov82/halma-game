@@ -1,5 +1,6 @@
 import * as express from 'express'
-import electricGame from './electric-game';
+//import electricGame from './electric-game';
+import HalmaGame from './HalmaGame';
 
 class App {
   public express;
@@ -9,7 +10,7 @@ class App {
   protected dateStart : Date;
   protected size : string;
   protected games = new Map < string,
-  electricGame > ();
+  HalmaGame > ();
 
   constructor() {
     this.express = express();
@@ -40,7 +41,7 @@ class App {
         .toString(36)
         .substring(2, 8);
       console.log(key);
-      let newGame = new electricGame(1, 5);
+      let newGame = new HalmaGame(16);
       this
         .games
         .set(key, newGame);

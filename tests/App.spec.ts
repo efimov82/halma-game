@@ -5,11 +5,11 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/../views');
 
 
-describe('App', () => {
+/*describe('App', () => {
   it('works', () =>
     supertest(app)
       .get('/')
       .expect('Content-Type', /html/)
       .expect(200)
   )
-})
+})*/  
