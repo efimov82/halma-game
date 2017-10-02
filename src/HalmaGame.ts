@@ -107,7 +107,7 @@ class HalmaGame {
   }
 
 
-  public getAvailableCellsJump(num : number) : Array < number > {
+  protected getAvailableCellsJump(num : number) : Array < number > {
     let res = [];
     if (this.isItCorner(num)) {
       res = this.getCellsForCorner(num, true);
@@ -142,7 +142,6 @@ class HalmaGame {
       res = this.getCellsForMiddle(num, false);
     }
 
-    //res = array_values(res);
     return res;
   }
 
