@@ -4,11 +4,14 @@
     "module": "commonjs",
     "outDir": "dist",
     "sourceMap": false
-    
+    //"types": [
+    //  "core-js"
+    //]
   },
   "files": [
     "./node_modules/@types/mocha/index.d.ts",
     "./node_modules/@types/node/index.d.ts"
+    // "./node_modules/@types/core-js/index.d.ts"
   ],
   
   "include": [
