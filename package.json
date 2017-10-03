@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch & nodemon dist",
-    "start": "node ./dist/index.js",
-    "test": "tsc && mocha dist/**/*.spec.js",
+    "dev": "tsc --watch & nodemon dist/src",
+    "start": "node ./dist/src/index.js",
+    "test": "tsc && mocha dist/tests/**/*.spec.js",
     "lint": "eslint src --ext ts",
     "tsc": "tsc"
   },
@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@shopify/draggable": "^1.0.0-beta",
     "@types/node": "7.0.22",
     "chai": "^4.1.2",
     "cookie-parser": "^1.4.3",

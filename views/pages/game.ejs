@@ -1,56 +1,28 @@
 <% include ../partials/header %>
 
   <div>
-    <p>Can move: <span id="canMove"></span></p>
+    <div><%=game.size %>, Can move: <span id="canMove"></span></div>
+    
   </div>
-  <div class="row">
-    <div class="row">
-      <div id="cell-1" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 1)"></div>
-      <div id="cell-2" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 2)"></div>
-      <div id="cell-3" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 3)"></div>
-      <div id="cell-4" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 4)"></div>
-      <div id="cell-5" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 5)"></div>
-    </div>
+  <div class="game">
+  <% black = false %>  
+  <% for(let i = 0; i < game.size; i++) { %>
+    <div>
+      <% for(let j = 1; j <= game.size; j++) { %>
+      <div id="cell-<%= (i*16 + j) %>" class="game-cell-<%= game.size %> <%= black ? "black" : "white" %>" onclick="doMove(<%= (i*16 + j) %>)"></div>
+      <% black = !black %>  
+      <% }%>
+      <% black = !black %>  
+    </div> 
+   <% }%>
 
-    <div class="row">
-      <div id="cell-6" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 6)"></div>
-      <div id="cell-7" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 7)"></div>
-      <div id="cell-8" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 8)"></div>
-      <div id="cell-9" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 9)"></div>
-      <div id="cell-10" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 10)"></div>
-    </div>
+  </div> 
+   
 
-    <div class="row">
-      <div id="cell-11" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 11)"></div>
-      <div id="cell-12" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 12)"></div>
-      <div id="cell-13" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 13)"></div>
-      <div id="cell-14" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 14)"></div>
-      <div id="cell-15" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 15)"></div>
-    </div>
-
-    <div class="row">
-      <div id="cell-16" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 16)"></div>
-      <div id="cell-17" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 17)"></div>
-      <div id="cell-18" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 18)"></div>
-      <div id="cell-19" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 19)"></div>
-      <div id="cell-20" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 20)"></div>
-    </div>
-
-    <div class="row">
-      <div id="cell-21" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 21)"></div>
-      <div id="cell-22" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 22)"></div>
-      <div id="cell-23" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 23)"></div>
-      <div id="cell-24" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 24)"></div>
-      <div id="cell-25" class="col-xs-1 gameCell" onclick="doMove(gameCounter, 25)"></div>
-    </div>
-  </div>
-
-  <div id="flip-counter" class="flip-counter"></div>
-
-    <!-- My flip counter script, REQUIRED -->
-	<script type="text/javascript" src="/js/flipcounter.min.js"></script>
+  <!-- My flip counter script, REQUIRED -->
+  <script type="text/javascript" src="/js/flipcounter.min.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/counter.css" />
-  
+
   <script src="/js/functions.js"></script>
 
   <% include ../partials/footer %>

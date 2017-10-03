@@ -3,7 +3,7 @@
  *
  * @description https://ru.wikipedia.org/wiki/%D0%A5%D0%B0%D0%BB%D0%BC%D0%B0
  * @author Danil Efimov <efimov@gmail.com>
- * @version 0.1
+ * @version 0.2
  */
 class HalmaGame {
   static readonly ST_FREE = 0;
@@ -11,12 +11,13 @@ class HalmaGame {
   static readonly ST_P2 = 2;
 
   protected playerIdMove = 1;
+  protected players = [];
   protected countMoves = 0;
   protected matrix : Map < number,
   number >;
 
   // 16×16 = 19, 10x10 = 15, 8x8 = 10
-  constructor(protected size : number = 16) {
+  constructor(protected size : number) {
     this.matrix = new Map < number,
     number > ();
     for (let i = 1; i <= this.size * this.size; i++) {

@@ -34,14 +34,15 @@ class App {
       res.render('pages/index', {games: this.games});
     });
 
-    router.get('/start', (req, res) => {
+    router.get(/^\/start\/(\d+)/, (req, res) => {
+      let size = req.params[0];
       let session = req.session;
       var key = Math
         .random()
         .toString(36)
         .substring(2, 8);
       console.log(key);
-      let newGame = new HalmaGame(16);
+      let newGame = new HalmaGame(size);
       this
         .games
         .set(key, newGame);
@@ -70,7 +71,11 @@ class App {
       // console.log(entry[0], entry[1]);
 
       if (this.games.has(key)) {
-        res.render('pages/game');
+        let game = this.games.get(key);
+
+        res.render('pages/game', {game: game});
+        // res.render('pages/index', {games: this.games});
+        res.render('pages/404');
       } else {
         res.render('pages/404');
       }

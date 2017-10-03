@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@shopify/draggable@^1.0.0-beta":
+  version "1.0.0-beta"
+  resolved "https://registry.yarnpkg.com/@shopify/draggable/-/draggable-1.0.0-beta.tgz#2a29831a49814c1aa583d8ada0f34fb8257131f6"
+
 "@types/chai@^4.0.4":
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.0.4.tgz#fe86315d9a66827feeb16f73bc954688ec950e18"

@@ -3,7 +3,9 @@
 
   <div class="jumbotron">
     <h2>Create your game</h2>
-    <button onclick="startGame()"> Start </button>
+    <button onclick="startGame(8)"> Start 8x8</button>
+    <button onclick="startGame(10)"> Start 10x10</button>
+    <button onclick="startGame(16)"> Start 16x16</button>
   </div>
 
   <div class="row justify-content-md-center">
@@ -30,8 +32,8 @@
   </div>
 
   <script type="text/javascript">
-    function startGame() {
-      $.get('/start').done((responce) => {
+    function startGame(size) {
+      $.get('/start/' + size).done((responce) => {
         location.href = '/' + responce
       })
     };
