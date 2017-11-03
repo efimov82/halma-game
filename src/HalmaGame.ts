@@ -2,7 +2,7 @@
  * Main class with game logic
  *
  * @description https://ru.wikipedia.org/wiki/%D0%A5%D0%B0%D0%BB%D0%BC%D0%B0
- * @author Danil Efimov <efimov@gmail.com>
+ * @author Danil Efimov <efimov82@gmail.com>
  * @version 0.2
  */
 class HalmaGame {
