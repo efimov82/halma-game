@@ -1,37 +1,28 @@
 import * as express from 'express'
-//import electricGame from './electric-game';
 import HalmaGame from './HalmaGame';
 
 class App {
   public express;
-  // public session;
-
-  protected level : number;
-  protected dateStart : Date;
-  protected size : string;
-  protected games = new Map < string,
-  HalmaGame > ();
+  protected level: number;
+  protected dateStart: Date;
+  protected size: string;
+  protected games = new Map<string, HalmaGame>();
 
   constructor() {
     this.express = express();
     let session = require('express-session');
 
-    this
-      .express
-      .use(express.static(__dirname + '/../public'));
+    this.express.use(express.static(__dirname + '/../public'));
 
-    this
-      .express
-      .use(session({secret: 'secret-key234234', resave: false, saveUninitialized: true}));
-
+    this.express.use(session({ secret: 'secret-key234234', resave: false, saveUninitialized: true }));
     this.mountRoutes();
   }
 
-  private mountRoutes() : void {
+  private mountRoutes(): void {
     const router = express.Router();
 
     router.get('/', (req, res) => {
-      res.render('pages/index', {games: this.games});
+      res.render('pages/index', { games: this.games });
     });
 
     router.get(/^\/start\/(\d+)/, (req, res) => {
@@ -55,7 +46,7 @@ class App {
     router.get(/^\/(\w{6})\/join$/, (req, res) => {
       let key = req.params[0];
       let session = req.session;
-      
+
       if (this.games.has(key)) {
         session.player_id = 2; // second player
         res.redirect('/' + key);
@@ -73,7 +64,7 @@ class App {
       if (this.games.has(key)) {
         let game = this.games.get(key);
 
-        res.render('pages/game', {game: game});
+        res.render('pages/game', { game: game });
         // res.render('pages/index', {games: this.games});
         res.render('pages/404');
       } else {

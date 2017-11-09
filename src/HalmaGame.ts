@@ -13,22 +13,18 @@ class HalmaGame {
   protected playerIdMove = 1;
   protected players = [];
   protected countMoves = 0;
-  protected matrix : Map < number,
-  number >;
+  protected matrix: Map<number, number>;
 
-  // 16×16 = 19, 10x10 = 15, 8x8 = 10
-  constructor(protected size : number) {
-    this.matrix = new Map < number,
-    number > ();
+  // 16×16 - 19, 10x10 - 15, 8x8 - 10
+  constructor(protected size: number) {
+    this.matrix = new Map<number, number>();
     for (let i = 1; i <= this.size * this.size; i++) {
-      this
-        .matrix
-        .set(i, HalmaGame.ST_FREE);
+      this.matrix.set(i, HalmaGame.ST_FREE);
     }
     this.fill();
   }
 
-  public getInfo(playerId : number) {
+  public getInfo(playerId: number) {
     // let time = Date.now() - this.timeStart;
 
     return {
@@ -39,8 +35,8 @@ class HalmaGame {
     };
   }
 
-  public move(playerId : number, from : number, to : number) : boolean {
-    if(this.playerIdMove !== playerId) {
+  public move(playerId: number, from: number, to: number): boolean {
+    if (this.playerIdMove !== playerId) {
       return false;
     }
 
@@ -56,18 +52,18 @@ class HalmaGame {
     return true;
   }
 
-  public getMatrix() : Map < number,
-  number > {
+  public getMatrix(): Map<number,
+    number> {
     return this.matrix;
   }
 
-  protected canMove(playerId : number, from : number, to : number) : boolean {
-    if(this.matrix.get(from) !== playerId) 
+  protected canMove(playerId: number, from: number, to: number): boolean {
+    if (this.matrix.get(from) !== playerId)
       return false;
-    
-    if (this.matrix.get(to) !== HalmaGame.ST_FREE) 
+
+    if (this.matrix.get(to) !== HalmaGame.ST_FREE)
       return false;
-    
+
     let availableCells1 = this.getAvailableCellsNear(from);
     //console.log(availableCells1);
     let availableCells2 = this.getAllAvailableCellsForJump(from, []);
@@ -77,38 +73,38 @@ class HalmaGame {
   }
 
 
-  public getAllAvailableCellsForJump(num : number, exclude : Array < number >, debug: boolean = false) : Array < number > {
+  public getAllAvailableCellsForJump(num: number, exclude: Array<number>, debug: boolean = false): Array<number> {
     let jumps = this.getAvailableCellsJump(num);
     if (debug)
-      console.log('getAllAvailableCellsForJump('+num+', ['+exclude+'])');
+      console.log('getAllAvailableCellsForJump(' + num + ', [' + exclude + '])');
 
-    let unic_jumps = jumps.filter( item => exclude.indexOf(item) === -1);
+    let unic_jumps = jumps.filter(item => exclude.indexOf(item) === -1);
     if (unic_jumps.length == 0)
       return [];
 
     if (debug)
-      console.log('unic=['+unic_jumps+']');
+      console.log('unic=[' + unic_jumps + ']');
 
     let exc2 = jumps.concat(exclude);
     exc2.push(num);
     let res = unic_jumps;
-    unic_jumps.forEach( (cell, index) => {
-      if (debug) console.log('res before=['+res+']');
-      
+    unic_jumps.forEach((cell, index) => {
+      if (debug) console.log('res before=[' + res + ']');
+
       res = res.concat(this.getAllAvailableCellsForJump(cell, exc2, debug));
 
-      if (debug) console.log('res after=['+res+']');
+      if (debug) console.log('res after=[' + res + ']');
     });
 
     if (debug) {
-      console.log('res('+num+')=['+res+']');
+      console.log('res(' + num + ')=[' + res + ']');
       console.log('-----------------------');
     }
     return this.uniqueArray(res);
   }
 
 
-  protected getAvailableCellsJump(num : number) : Array < number > {
+  protected getAvailableCellsJump(num: number): Array<number> {
     let res = [];
     if (this.isItCorner(num)) {
       res = this.getCellsForCorner(num, true);
@@ -127,7 +123,7 @@ class HalmaGame {
     return res;
   }
 
-  public getAvailableCellsNear(num : number) : Array < number > {
+  public getAvailableCellsNear(num: number): Array<number> {
     let res = [];
     if (this.isItCorner(num)) {
       res = this.getCellsForCorner(num, false);
@@ -146,7 +142,7 @@ class HalmaGame {
     return res;
   }
 
-  protected getCellsForCorner(num : number, jump : boolean) : Array < number > {
+  protected getCellsForCorner(num: number, jump: boolean): Array<number> {
     let res = [];
     let r,
       r2,
@@ -201,7 +197,7 @@ class HalmaGame {
     return res;
   }
 
-  protected getCellsForLeftCol(num : number, jump : boolean) : Array < number > {
+  protected getCellsForLeftCol(num: number, jump: boolean): Array<number> {
     let n = num + 1;
     let n2 = num + 2;
     let u = num - this.size;
@@ -223,8 +219,8 @@ class HalmaGame {
    * @param d2 down cell with jump
    * @param jump need to jump
    */
-  protected _getResForCellInCol(n: number, n2: number, u: number, u2: number, d: number, d2: number, jump : boolean)  : Array < number > {
-    let res = new Array < number > ();
+  protected _getResForCellInCol(n: number, n2: number, u: number, u2: number, d: number, d2: number, jump: boolean): Array<number> {
+    let res = new Array<number>();
     if (!jump) {
       if (this.matrix.get(n) == HalmaGame.ST_FREE) {
         res.push(n);
@@ -249,7 +245,7 @@ class HalmaGame {
     return res;
   }
 
-  protected getCellsForRightCol(num : number, jump : boolean) : Array < number > {
+  protected getCellsForRightCol(num: number, jump: boolean): Array<number> {
     let n = num - 1;
     let n2 = num - 2;
     let u = num - this.size;
@@ -260,7 +256,7 @@ class HalmaGame {
     return this._getResForCellInCol(n, n2, u, u2, d, d2, jump);
   }
 
-  protected getCellsForFirstLine(num : number, jump : boolean) : Array < number > {
+  protected getCellsForFirstLine(num: number, jump: boolean): Array<number> {
     let n = num + 1;
     let n2 = num + 2;
     let prev = num - 1;
@@ -272,7 +268,7 @@ class HalmaGame {
 
   }
 
-  protected getCellsForLastLine(num : number, jump : boolean) : Array < number > {
+  protected getCellsForLastLine(num: number, jump: boolean): Array<number> {
     let n = num + 1;
     let n2 = num + 2;
     let prev = num - 1;
@@ -283,7 +279,7 @@ class HalmaGame {
     return this._getResForCellInCol(n, n2, prev, prev2, d, d2, jump);
   }
 
-  protected getCellsForMiddle(num : number, jump : boolean) : Array < number > {
+  protected getCellsForMiddle(num: number, jump: boolean): Array<number> {
     let next = num + 1;
     let next2 = num + 2;
     let prev = num - 1;
@@ -293,7 +289,7 @@ class HalmaGame {
     let down = num + this.size;
     let down2 = num + this.size * 2;
 
-    let res = new Array < number > ();
+    let res = new Array<number>();
     if (!jump) {
       if (this.matrix.get(next) == HalmaGame.ST_FREE) {
         res.push(next);
@@ -324,7 +320,7 @@ class HalmaGame {
     return res;
   }
 
-  protected isItCorner(num : number) : boolean {
+  protected isItCorner(num: number): boolean {
     let arr = [
       1,
       this.size,
@@ -334,23 +330,23 @@ class HalmaGame {
     return arr.indexOf(num) !== -1;
   }
 
-  protected isItLeftCol(num : number) : boolean {
+  protected isItLeftCol(num: number): boolean {
     return num % this.size == 1;
   }
 
-  protected isItRightCol(num : number) : boolean {
+  protected isItRightCol(num: number): boolean {
     return num % this.size == 0;
   }
 
-  protected isItFirsLine(num : number) : boolean {
+  protected isItFirsLine(num: number): boolean {
     return num < this.size;
   }
 
-  protected isItLastLine(num : number) : boolean {
+  protected isItLastLine(num: number): boolean {
     return num >= (this.size * (this.size - 1));
   }
 
-  protected applyMove(playerId : number, from : number, to : number) {
+  protected applyMove(playerId: number, from: number, to: number) {
     this
       .matrix
       .set(from, HalmaGame.ST_FREE);
@@ -416,7 +412,7 @@ class HalmaGame {
             .set(num, HalmaGame.ST_P2);
         });
         break;
-        //TODO 10, 8
+      //TODO 10, 8
     }
   }
 
