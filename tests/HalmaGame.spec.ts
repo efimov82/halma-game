@@ -12,12 +12,69 @@ let user2 = 2;
 
 describe('HalmaGame', () => {
   
-  it('init', () => {
+  it('init8x8', () => {
+    // TODO
+  })
+
+
+  it('init10x10', () => {
+    // TODO
+  })
+
+
+  it('init16x16', () => {
     let game = new HalmaGame(size);
-    let info = game.getInfo(1);
+    let info = game.getInfo(user1);
+
     info.matrix.size.should.equal(16 * 16);
+    let matrix = JSON.stringify([...info.matrix]);
     
-    info.matrix.get(1).should.equal(1);
+    // USER 1
+    info.matrix.get(1).should.equal(user1);
+    info.matrix.get(5).should.equal(user1);
+    info.matrix.get(6).should.equal(0);
+
+    info.matrix.get(17).should.equal(user1);
+    info.matrix.get(21).should.equal(user1);
+    info.matrix.get(22).should.equal(0);
+
+    info.matrix.get(33).should.equal(user1);
+    info.matrix.get(36).should.equal(user1);
+    info.matrix.get(37).should.equal(0);
+
+    info.matrix.get(49).should.equal(user1);
+    info.matrix.get(51).should.equal(user1);
+    info.matrix.get(52).should.equal(0);
+
+    info.matrix.get(65).should.equal(user1);
+    info.matrix.get(66).should.equal(user1);
+    info.matrix.get(67).should.equal(0);
+
+    info.matrix.get(81).should.equal(0);
+
+    // USER 2
+    info.matrix.get(176).should.equal(0);
+
+    info.matrix.get(190).should.equal(0);
+    info.matrix.get(191).should.equal(user2, 'cell 191 should be equal 2');
+    info.matrix.get(192).should.equal(user2, 'cell 192 should be equal 2');
+    
+    info.matrix.get(205).should.equal(0);
+    info.matrix.get(206).should.equal(user2, 'cell 206 should be equal 2');
+    info.matrix.get(208).should.equal(user2, 'cell 208 should be equal 2');
+
+    info.matrix.get(220).should.equal(0);
+    info.matrix.get(221).should.equal(user2, 'cell 221 should be equal 2');
+    info.matrix.get(224).should.equal(user2, 'cell 224 should be equal 2');
+
+    info.matrix.get(235).should.equal(0);
+    info.matrix.get(236).should.equal(user2, 'cell 236 should be equal 2');
+    info.matrix.get(240).should.equal(user2, 'cell 240 should be equal 2');
+
+    info.matrix.get(251).should.equal(0, 'cell 251 should be equal 0');
+    info.matrix.get(252).should.equal(user2, 'cell 252 should be equal 2');
+    info.matrix.get(256).should.equal(user2, 'cell 256 should be equal 2');
+    
     info.canMove.should.equal(true);
   })
 

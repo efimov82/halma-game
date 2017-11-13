@@ -32,7 +32,7 @@ class App {
         .random()
         .toString(36)
         .substring(2, 8);
-      console.log(key);
+      // console.log(key);
       let newGame = new HalmaGame(size);
       this
         .games
@@ -72,10 +72,28 @@ class App {
       }
     });
 
-    // game/ID/move/N - move=N game/ID -> info
-    router.get(/^\/game\/(\w{6})\/(state|move)?\/(\d+)?$/, (req, res) => { // /^\/(game|page)\/(.+?)\/(info|move)?\/?(\d+)?/
-      this.routeGame(req, res);
+    router.get(/^\/(\w{6})\/state$/, (req, res) => {
+      let key = req.params[0];
+      let session = req.session;
+
+      if (this.games.has(key) && session.player_id > 0) {
+        let game = this.games.get(key);
+        let info = game.getInfo(session.player_id, true);
+        
+        res.json(info);
+        console.log(info);
+        console.log(session.player_id);
+      } else {
+        res.render('pages/404');
+      }
+
+      //console.log('state');
     });
+
+    // game/ID/move/N - move=N game/ID -> info
+    /*router.get(/^\/game\/(\w{6})\/(state|move)?\/(\d+)?$/, (req, res) => { // /^\/(game|page)\/(.+?)\/(info|move)?\/?(\d+)?/
+      this.routeGame(req, res);
+    });*/
 
     this
       .express

@@ -9,8 +9,8 @@
 }
 
 .game-cell-8 {
-  background-color: #ECECEC;
-  border: 1px solid #CCCCCC;
+  background-color: #784f17;
+  border: 1px solid #784f17;
   border-radius: 1px;
   
   margin: 1px;
@@ -19,8 +19,8 @@
 }
 
 .game-cell-10 {
-  background-color: #ECECEC;
-  border: 1px solid #505050;
+  background-color: #784f17;
+  border: 1px solid #784f17;
   border-radius: 1px;
   
   margin: 1px;
@@ -29,8 +29,8 @@
 }
 
 .game-cell-16 {
-  background-color: #ECECEC;
-  border: 1px solid #505050;
+  background-color: #784f17;
+  border: 1px solid #784f17;
   border-radius: 1px;
   
   margin: 1px;
@@ -39,9 +39,18 @@
 }
 
 .black {
-  background-color: #AEAEAE;
+  background-color: #f1d3ad;
 }
 
+.p1{
+  background-image: url('../img/p1.png');
+  background-repeat: no-repeat;
+}
+
+.p2{
+  background-image: url('../img/p2.png');
+  background-repeat: no-repeat;
+}
 
 .textPage{
   font-size: 18px;
@@ -94,23 +103,4 @@
   100% {
     opacity: 100;
   }
-}
-
-.lightOn {
-  background-image: url('../img/lamp_sm.png');
-  background-repeat: no-repeat;
-  animation: showOnAnimation 1.5s ease-out normal;
-  background-color: #296062;
-}
-
-.lightOnFreezed {
-  background-image: url('../img/lamp_freezed_sm.png');
-  background-repeat: no-repeat;
-  animation: showOnAnimation 1.5s ease-out normal;
-}
-
-.lightOffFreezed {
-  background-image: url('../img/lamp_off_freezed_sm.png');
-  background-repeat: no-repeat;
-  animation: showOnAnimation 1.5s ease-out normal;
 }

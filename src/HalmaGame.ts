@@ -16,19 +16,34 @@ class HalmaGame {
   protected matrix: Map<number, number>;
 
   // 16×16 - 19, 10x10 - 15, 8x8 - 10
-  constructor(protected size: number) {
+  constructor(protected size: number = 16) {
+    this.playerIdMove = 1;
     this.matrix = new Map<number, number>();
     for (let i = 1; i <= this.size * this.size; i++) {
       this.matrix.set(i, HalmaGame.ST_FREE);
     }
     this.fill();
+    //console.log(JSON.stringify([...this.matrix]));
   }
 
-  public getInfo(playerId: number) {
+  /**
+   * 
+   * @param playerId 
+   * @return [matrix: Map<number, number>, 
+   *          size: number, 
+   *          countMoves: number, 
+   *          canMove: boolean]
+   */
+  public getInfo(playerId: number, convert = false) {
     // let time = Date.now() - this.timeStart;
-
+    let matrix;
+    if (convert) {
+      matrix = JSON.stringify([...this.matrix]);
+    } else {
+      matrix = this.matrix;
+    }
     return {
-      matrix: this.matrix,
+      matrix: convert ? JSON.stringify([...this.matrix]) : matrix,
       size: this.size,
       countMoves: this.countMoves,
       canMove: this.playerIdMove == playerId
@@ -356,64 +371,65 @@ class HalmaGame {
   }
 
   protected fill() {
-    switch (this.size) {
-      case 16:
-        let player1 = [
-          1,
-          2,
-          3,
-          4,
-          5,
-          17,
-          18,
-          19,
-          20,
-          21,
-          33,
-          34,
-          35,
-          36,
-          49,
-          50,
-          51,
-          65,
-          66
-        ];
-        let player2 = [
-          191,
-          192,
-          206,
-          207,
-          208,
-          221,
-          222,
-          223,
-          224,
-          236,
-          237,
-          238,
-          239,
-          240,
-          252,
-          253,
-          254,
-          255,
-          256
-        ];
-        player1.forEach(num => {
-          this
-            .matrix
-            .set(num, HalmaGame.ST_P1);
-        });
+    let player1, player2 = [];
 
-        player2.forEach(num => {
-          this
-            .matrix
-            .set(num, HalmaGame.ST_P2);
-        });
+    switch(+this.size) { // without '+' not work :)
+      case 8:
+        player1 = [
+          1,  2,  3,  4,
+          9,  10, 11,
+          17, 18,
+          25
+        ];
+        player2 = [
+                      40,
+                  47, 48,
+              54, 55, 56,
+          61, 62, 63, 64
+        ];
         break;
-      //TODO 10, 8
+      case 10:
+        player1 = [
+          1,  2,  3,  4, 5,
+          11, 12, 13, 14,
+          21, 22, 23,
+          31, 32,
+          41
+        ];
+        player2 = [
+                        60,
+                    69, 70,
+                78, 79, 80,
+            87, 88, 89, 90,
+        96, 97, 98, 99, 100
+        ];
+        break;
+      case 16:
+      default:
+        player1 = [
+          1,  2,   3,  4,  5,
+          17, 18, 19, 20, 21,
+          33, 34, 35, 36,
+          49, 50, 51,
+          65, 66
+        ];
+        player2 = [
+                         191, 192, 
+                    206, 207, 208,
+               221, 222, 223, 224, 
+          236, 237, 238, 239, 240,
+          252, 253, 254, 255, 256
+        ];
+        break;
     }
+
+    player1.forEach(num => {
+      this.matrix.set(num, HalmaGame.ST_P1);
+    });
+
+    player2.forEach(num => {
+      this.matrix.set(num, HalmaGame.ST_P2);
+    });
   }
 
   /**
