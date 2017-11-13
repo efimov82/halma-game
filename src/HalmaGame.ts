@@ -373,7 +373,7 @@ class HalmaGame {
   protected fill() {
     let player1, player2 = [];
 
-    switch(+this.size) { // without '+' not work :)
+    switch(+this.size) { // without '+' not work...
       case 8:
         player1 = [
           1,  2,  3,  4,
@@ -437,7 +437,6 @@ class HalmaGame {
    * 
    * @param a 
    */
-
   protected uniqueArray(a) {
     function onlyUnique(value, index, self) {
       return self.indexOf(value) === index;
@@ -445,5 +444,4 @@ class HalmaGame {
     return a.filter(onlyUnique);
   }
 }
-
 export default HalmaGame;
